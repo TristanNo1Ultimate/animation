@@ -1,404 +1,675 @@
 namespace SpriteKind {
     export const Background = SpriteKind.create()
+    export const Weapon = SpriteKind.create()
 }
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     tristanDirection = 2
 })
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     if (tristanDirection == 1) {
+        sword.setPosition(Tristan.x - 5, Tristan.y)
         animation.runImageAnimation(
         Tristan,
         [img`
-            ............ffffff..........
-            ...........f2feeeeff........
-            ..........f222feeeeff.......
-            .....cc...feeeeffeeef.......
-            .....cdc.fe2222eeffff.......
-            .....cddcf2effff222ef.......
-            ......cddcffeeefffffff......
-            .......cddce44fbe44eff......
-            ........cdceddf14d4eef......
-            ........cccdeddd4eeef.......
-            .........edd4e44eeff........
-            ..........ee442222f.........
-            ...........f2e2222f.........
-            ...........f554444f.........
-            ............ffffff..........
-            ..............fff...........
+            . . . . . f f f f f f . . . . . 
+            . . . . f 2 f e e e e f f . . . 
+            . . . f 2 2 2 f e e e e f f . . 
+            . . . f e e e e f f e e e f . . 
+            . . f e 2 2 2 2 e e f f f f . . 
+            . . f 2 e f f f f 2 2 2 e f . . 
+            . . . f f e e e f f f f f f f . 
+            . . . . e 4 4 f b e 4 4 e f f . 
+            . . . . e d d f 1 4 d 4 e e f . 
+            . . . . d e d d d 4 e e e f . . 
+            . . e d d 4 e 4 4 e e f f . . . 
+            . . . e e 4 4 2 2 2 2 f . . . . 
+            . . . . f 2 e 2 2 2 2 f . . . . 
+            . . . . f 5 5 4 4 4 4 f . . . . 
+            . . . . . f f f f f f . . . . . 
+            . . . . . . . f f f . . . . . . 
             `,img`
-            ............................
-            ............fff.............
-            ...........f2fffff..........
-            .........ff22eeeeeff........
-            ........ff222eeeeeeff.......
-            ........feeeefffeeeef.......
-            .......fe2222eeefffff.......
-            .......f2efffff222efff......
-            cc.....fffeeefffffffff......
-            cdcc...fee44fbbe44efef......
-            ccddcc..feddfbb4d4eef.......
-            ..cdddceefddddd4eeef........
-            ...ccdcddee2222222f.........
-            ....cccdd44e544444f.........
-            .......eeeeffffffff.........
-            ...........ff...fff.........
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . f f f . . . . . . 
+            . . . . . . f 2 f f f f f . . . 
+            . . . . f f 2 2 e e e e e f f . 
+            . . . f f 2 2 2 e e e e e e f f 
+            . . . f e e e e f f f e e e e f 
+            . . f e 2 2 2 2 e e e f f f f f 
+            . . f 2 e f f f f f 2 2 2 e f f 
+            . . f f f e e e f f f f f f f f 
+            . . f e e 4 4 f b b e 4 4 e f e 
+            . . . f e d d f b b 4 d 4 e e f 
+            . . e e f d d d d d 4 e e e f . 
+            . . d d e e 2 2 2 2 2 2 2 f . . 
+            . . d d 4 4 e 5 4 4 4 4 4 f . . 
+            . . e e e e f f f f f f f f . . 
+            . . . . . . f f . . . f f f . . 
             `,img`
-            .............ff.............
-            ...........ff2ffff..........
-            ..........ff2feeeeff........
-            .........ff22feeeeeff.......
-            .........feeeeffeeeef.......
-            ........fe2222eefffff.......
-            ........f2effff222efff......
-            ........fffeeeffffffff......
-            ........fee44fbe44efef......
-            .........feddfb4d4eef.......
-            ........c.eeddd4eeef........
-            ..ccccccceddee2222f.........
-            ...dddddcedd44e444f.........
-            ....ccccc.eeeefffff.........
-            ........c...ffffffff........
-            .............ff..fff........
+            . . . . . . . f f . . . . . . . 
+            . . . . . f f 2 f f f f . . . . 
+            . . . . f f 2 f e e e e f f . . 
+            . . . f f 2 2 f e e e e e f f . 
+            . . . f e e e e f f e e e e f . 
+            . . f e 2 2 2 2 e e f f f f f . 
+            . . f 2 e f f f f 2 2 2 e f f f 
+            . . f f f e e e f f f f f f f f 
+            . . f e e 4 4 f b e 4 4 e f e f 
+            . . . f e d d f b 4 d 4 e e f . 
+            . . . . e e d d d 4 e e e f . . 
+            . . . e d d e e 2 2 2 2 f . . . 
+            . . . e d d 4 4 e 4 4 4 f . . . 
+            . . . . e e e e f f f f f . . . 
+            . . . . . . f f f f f f f f . . 
+            . . . . . . . f f . . f f f . . 
             `,img`
-            ...........ffffff...........
-            ..........f2feeeeff.........
-            .........f222feeeeff........
-            .........feeeeffeeef........
-            ........fe2222eeffff........
-            ........f2effff222ef........
-            ........fffeeefffffff.......
-            ........fee44fbe44eff.......
-            .........feddf14d4eef.......
-            ..........fdddd4eeef........
-            ..........fe444eddf.........
-            ..........ccc22eddf.........
-            ..........cdc22fee..........
-            .........cddc4444f..........
-            ........cddcfffff...........
-            .......cddc..fff............
+            . . . . . f f f f f f . . . . . 
+            . . . . f 2 f e e e e f f . . . 
+            . . . f 2 2 2 f e e e e f f . . 
+            . . . f e e e e f f e e e f . . 
+            . . f e 2 2 2 2 e e f f f f . . 
+            . . f 2 e f f f f 2 2 2 e f . . 
+            . . f f f e e e f f f f f f f . 
+            . . f e e 4 4 f b e 4 4 e f f . 
+            . . . f e d d f 1 4 d 4 e e f . 
+            . . . . f d d d d 4 e e e f . . 
+            . . . . f e 4 4 4 e d d f . . . 
+            . . . . . . . 2 2 e d d f . . . 
+            . . . . . . . 2 2 f e e . . . . 
+            . . . . . . . 4 4 4 4 f . . . . 
+            . . . . . . f f f f f . . . . . 
+            . . . . . . . f f f . . . . . . 
             `,img`
-            ...........ffffff...........
-            ..........f2feeeeff.........
-            .........f222feeeeff........
-            .........feeeeffeeef........
-            ........fe2222eeffff........
-            ........f2effff222ef........
-            ........fffeeefffffff.......
-            ........fee44fbe44eff.......
-            ........ffeddf14d4eef.......
-            .......fddfdddd4eeef........
-            .......fbbfeee4eeff.........
-            .......fbbedd4222f..........
-            ........fbedde222e..........
-            .........ffeef444f..........
-            ...........ffffff...........
-            .............fff............
+            . . . . . f f f f f f . . . . . 
+            . . . . f 2 f e e e e f f . . . 
+            . . . f 2 2 2 f e e e e f f . . 
+            . . . f e e e e f f e e e f . . 
+            . . f e 2 2 2 2 e e f f f f . . 
+            . . f 2 e f f f f 2 2 2 e f . . 
+            . . f f f e e e f f f f f f f . 
+            . . f e e 4 4 f b e 4 4 e f f . 
+            . . f f e d d f 1 4 d 4 e e f . 
+            . f d d f d d d d 4 e e e f . . 
+            . f b b f e e e 4 e e f f . . . 
+            . f b b e d d 4 2 2 2 f . . . . 
+            . . f b e d d e 2 2 2 e . . . . 
+            . . . f f e e f 4 4 4 f . . . . 
+            . . . . . f f f f f f . . . . . 
+            . . . . . . . f f f . . . . . . 
+            `],
+        50,
+        false
+        )
+        animation.runImageAnimation(
+        sword,
+        [img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . c c . . . . . . . . . 
+            . . . . . c d c . . . . . . . . 
+            . . . . . c d d c . . . . . . . 
+            . . . . . . c d d c . . . . . . 
+            . . . . . . . c d d c . . . . . 
+            . . . . . . . . c d c . . . . . 
+            . . . . . . . . c c c . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `,img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            c c . . . . . . . . . . . . . . 
+            c d c c . . . . . . . . . . . . 
+            c c d d c c . . . . . . . . . . 
+            . . c d d d c . . . . . . . . . 
+            . . . c c d c . . . . . . . . . 
+            . . . . c c c . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `,img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . c . . . . . . . 
+            . . c c c c c c c . . . . . . . 
+            . . . d d d d d c . . . . . . . 
+            . . . . c c c c c . . . . . . . 
+            . . . . . . . . c . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `,img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . c c c . . . 
+            . . . . . . . . . . c d c . . . 
+            . . . . . . . . . c d d c . . . 
+            . . . . . . . . c d d c . . . . 
+            . . . . . . . c d d c . . . . . 
+            `,img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . d . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
             `],
         50,
         false
         )
     } else if (tristanDirection == 2) {
+        sword.setPosition(Tristan.x, Tristan.y - 5)
         animation.runImageAnimation(
         Tristan,
         [img`
-            ................
-            ................
-            ..cc............
-            ..cdc...........
-            ..cddc..........
-            ..ccddffff......
-            ...cffeeeeff....
-            ...feeeffeeef...
-            ..fffff22fffff..
-            ..ffe2e22e2eff..
-            ..fe2f2ff2f2ef..
-            ..fff22ee22fff..
-            .ffef2feef2feff.
-            .feeffeeeefeeef.
-            ..feeeeeeeeeef..
-            ...feeeeeeeef...
-            ..e4ffffffff....
-            ..4df222222f....
-            ..44f444444f....
-            .....ffffff.....
-            .....ff..ff.....
-            ................
-            ................
-            ................
+            . . . . . . f f f f . . . . . . 
+            . . . . f f e e e e f f . . . . 
+            . . . f e e e f f e e e f . . . 
+            . . f f f f f 2 2 f f f f f . . 
+            . . f f e 2 e 2 2 e 2 e f f . . 
+            . . f e 2 f 2 f f 2 f 2 e f . . 
+            . . f f f 2 2 e e 2 2 f f f . . 
+            . f f e f 2 f e e f 2 f e f f . 
+            . f e e f f e e e e f e e e f . 
+            . . f e e e e e e e e e e f . . 
+            . . . f e e e e e e e e f . . . 
+            . . e 4 f f f f f f f f . . . . 
+            . . 4 d f 2 2 2 2 2 2 f . . . . 
+            . . 4 4 f 4 4 4 4 4 4 f . . . . 
+            . . . . . f f f f f f . . . . . 
+            . . . . . f f . . f f . . . . . 
             `,img`
-            ......cc........
-            ......cdc.......
-            ......c1c.......
-            ......c1c.......
-            ......c1c.......
-            ......ffff......
-            ....ffeeeeff....
-            ...feeeffeeef...
-            ..fffff22fffff..
-            ..ffe2e22e2eff..
-            ..fe2f2ff2f2ef..
-            ..fff22ee22fff..
-            .ffef2feef2feff.
-            .feeffeeeefeeef.
-            ..feeeeeeeeeef..
-            ...feeeeeeeef...
-            ..e4ffffffff....
-            ..4df222222f....
-            ..44f444444f....
-            .....ffffff.....
-            .....ff..ff.....
-            ................
-            ................
-            ................
+            . . . . . . f f f f . . . . . . 
+            . . . . f f e e e e f f . . . . 
+            . . . f e e e f f e e e f . . . 
+            . . f f f f f 2 2 f f f f f . . 
+            . . f f e 2 e 2 2 e 2 e f f . . 
+            . . f e 2 f 2 f f 2 f 2 e f . . 
+            . . f f f 2 2 e e 2 2 f f f . . 
+            . f f e f 2 f e e f 2 f e f f . 
+            . f e e f f e e e e f e e e f . 
+            . . f e e e e e e e e e e f . . 
+            . . . f e e e e e e e e f . . . 
+            . . e 4 f f f f f f f f . . . . 
+            . . 4 d f 2 2 2 2 2 2 f . . . . 
+            . . 4 4 f 4 4 4 4 4 4 f . . . . 
+            . . . . . f f f f f f . . . . . 
+            . . . . . f f . . f f . . . . . 
             `,img`
-            ................
-            ................
-            ............ccc.
-            ...........cc11c
-            ..........cc11c.
-            ......ffffc11c..
-            ....ffeeeeffc...
-            ...feeeffeeef...
-            ..fffff22fffff..
-            ..ffe2e22e2eff..
-            ..fe2f2ff2f2ef..
-            ..fff22ee22fff..
-            .ffef2feef2feff.
-            .feeffeeeefeeef.
-            ..feeeeeeeeeef..
-            ...feeeeeeeef...
-            ..e4ffffffff....
-            ..4df222222f....
-            ..44f444444f....
-            .....ffffff.....
-            .....ff..ff.....
-            ................
-            ................
-            ................
+            . . . . . . f f f f . . . . . . 
+            . . . . f f e e e e f f . . . . 
+            . . . f e e e f f e e e f . . . 
+            . . f f f f f 2 2 f f f f f . . 
+            . . f f e 2 e 2 2 e 2 e f f . . 
+            . . f e 2 f 2 f f 2 f 2 e f . . 
+            . . f f f 2 2 e e 2 2 f f f . . 
+            . f f e f 2 f e e f 2 f e f f . 
+            . f e e f f e e e e f e e e f . 
+            . . f e e e e e e e e e e f . . 
+            . . . f e e e e e e e e f . . . 
+            . . e 4 f f f f f f f f . . . . 
+            . . 4 d f 2 2 2 2 2 2 f . . . . 
+            . . 4 4 f 4 4 4 4 4 4 f . . . . 
+            . . . . . f f f f f f . . . . . 
+            . . . . . f f . . f f . . . . . 
             `,img`
-            ................
-            ................
-            ................
-            ................
-            ................
-            ......ffff......
-            ....ffeeeeff....
-            ...feeeffeeef...
-            ..fffff22fffff..
-            ..ffe2e22e2eff..
-            ..fe2f2ff2f2ef..
-            ..fff22ee22fff..
-            .ffef2feef2feff.
-            .feeffeeeefeeef.
-            ..feeeeeeeeeef..
-            ...feeeeeeeef...
-            ..e4ffffffff4e..
-            ..4df222222fd4..
-            ..44f444444f44..
-            .....ffffff.....
-            .....ff..ff.....
-            ................
-            ................
-            ................
+            . . . . . . f f f f . . . . . . 
+            . . . . f f e e e e f f . . . . 
+            . . . f e e e f f e e e f . . . 
+            . . f f f f f 2 2 f f f f f . . 
+            . . f f e 2 e 2 2 e 2 e f f . . 
+            . . f e 2 f 2 f f 2 f 2 e f . . 
+            . . f f f 2 2 e e 2 2 f f f . . 
+            . f f e f 2 f e e f 2 f e f f . 
+            . f e e f f e e e e f e e e f . 
+            . . f e e e e e e e e e e f . . 
+            . . . f e e e e e e e e f . . . 
+            . . e 4 f f f f f f f f 4 e . . 
+            . . 4 d f 2 2 2 2 2 2 f d 4 . . 
+            . . 4 4 f 4 4 4 4 4 4 f 4 4 . . 
+            . . . . . f f f f f f . . . . . 
+            . . . . . f f . . f f . . . . . 
+            `],
+        50,
+        false
+        )
+        animation.runImageAnimation(
+        sword,
+        [img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . c c c . 
+            . . . . . . . . . . . c c 1 1 c 
+            . . . . . . . . . . c c 1 1 c . 
+            . . . . . . . . . . c 1 1 c . . 
+            . . . . . . . . . . . . c . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `,img`
+            . . . . . . c c . . . . . . . . 
+            . . . . . . c d c . . . . . . . 
+            . . . . . . c 1 c . . . . . . . 
+            . . . . . . c 1 c . . . . . . . 
+            . . . . . . c 1 c . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `,img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . c c . . . . . . . . . . . . 
+            . . c d c . . . . . . . . . . . 
+            . . c d d c . . . . . . . . . . 
+            . . c c d d . . . . . . . . . . 
+            . . . c . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `,img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
             `],
         50,
         false
         )
     } else if (tristanDirection == 3) {
+        sword.setPosition(Tristan.x + 5, Tristan.y)
         animation.runImageAnimation(
         Tristan,
         [img`
-            .........ffffff.............
-            .......ffeeeef2f............
-            ......ffeeeef222f...........
-            ......feeeffeeeef...cc......
-            ......ffffee2222ef.cdc......
-            ......fe222ffffe2fcddc......
-            .....fffffffeeeffcddc.......
-            .....ffe44ebf44ecddc........
-            .....fee4d41fddecdc.........
-            ......feee4dddedccc.........
-            .......ffee44e4dde..........
-            ........f222244ee...........
-            ........f2222e2f............
-            ........f444455f............
-            .........ffffff.............
-            ..........fff...............
+            . . . . . f f f f f f . . . . . 
+            . . . f f e e e e f 2 f . . . . 
+            . . f f e e e e f 2 2 2 f . . . 
+            . . f e e e f f e e e e f . . . 
+            . . f f f f e e 2 2 2 2 e f . . 
+            . . f e 2 2 2 f f f f e 2 f . . 
+            . f f f f f f f e e e f f . . . 
+            . f f e 4 4 e b f 4 4 e . . . . 
+            . f e e 4 d 4 1 f d d e . . . . 
+            . . f e e e 4 d d d e d . . . . 
+            . . . f f e e 4 4 e 4 d d e . . 
+            . . . . f 2 2 2 2 4 4 e e . . . 
+            . . . . f 2 2 2 2 e 2 f . . . . 
+            . . . . f 4 4 4 4 5 5 f . . . . 
+            . . . . . f f f f f f . . . . . 
+            . . . . . . f f f . . . . . . . 
             `,img`
-            ............................
-            ............fff.............
-            .........fffff2f............
-            .......ffeeeee22ff..........
-            ......ffeeeeee222ff.........
-            ......feeeefffeeeef.........
-            ......fffffeee2222ef........
-            .....fffe222fffffe2f........
-            .....fffffffffeeefff.....cc.
-            .....fefe44ebbf44eef...ccdc.
-            ......fee4d4bbfddef..ccddcc.
-            .......feee4dddddfeecdddc...
-            ........f2222222eeddcdcc....
-            ........f444445e44ddccc.....
-            ........ffffffffeeee........
-            ........fff...ff............
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . f f f . . . . . . 
+            . . . . f f f f f 2 f . . . . . 
+            . . f f e e e e e 2 2 f f . . . 
+            . f f e e e e e e 2 2 2 f f . . 
+            . f e e e e f f f e e e e f . . 
+            . f f f f f e e e 2 2 2 2 e f . 
+            f f f e 2 2 2 f f f f f e 2 f . 
+            f f f f f f f f f e e e f f f . 
+            f e f e 4 4 e b b f 4 4 e e f . 
+            . f e e 4 d 4 b b f d d e f . . 
+            . . f e e e 4 d d d d d f e e . 
+            . . . f 2 2 2 2 2 2 2 e e d d . 
+            . . . f 4 4 4 4 4 5 e 4 4 d d . 
+            . . . f f f f f f f f e e e e . 
+            . . . f f f . . . f f . . . . . 
             `,img`
-            ............ff..............
-            .........ffff2ff............
-            .......ffeeeef2ff...........
-            ......ffeeeeef22ff..........
-            ......feeeeffeeeef..........
-            ......fffffee2222ef.........
-            .....fffe222ffffe2f.........
-            .....ffffffffeeefff.........
-            .....fefe44ebf44eef.........
-            ......fee4d4bfddef..........
-            .......feee4dddee.c.........
-            ........f2222eeddeccccccc...
-            ........f444e44ddecddddd....
-            ........fffffeeee.ccccc.....
-            .......ffffffff...c.........
-            .......fff..ff..............
+            . . . . . . . . f f . . . . . . 
+            . . . . . f f f f 2 f f . . . . 
+            . . . f f e e e e f 2 f f . . . 
+            . . f f e e e e e f 2 2 f f . . 
+            . . f e e e e f f e e e e f . . 
+            . . f f f f f e e 2 2 2 2 e f . 
+            . f f f e 2 2 2 f f f f e 2 f . 
+            . f f f f f f f f e e e f f f . 
+            . f e f e 4 4 e b f 4 4 e e f . 
+            . . f e e 4 d 4 b f d d e f . . 
+            . . . f e e e 4 d d d e e . . . 
+            . . . . f 2 2 2 2 e e d d e . . 
+            . . . . f 4 4 4 e 4 4 d d e . . 
+            . . . . f f f f f e e e e . . . 
+            . . . f f f f f f f f . . . . . 
+            . . . f f f . . f f . . . . . . 
             `,img`
-            ..........ffffff............
-            ........ffeeeef2f...........
-            .......ffeeeef222f..........
-            .......feeeffeeeef..........
-            .......ffffee2222ef.........
-            .......fe222ffffe2f.........
-            ......fffffffeeefff.........
-            ......ffe44ebf44eef.........
-            ......fee4d41fddef..........
-            .......feee4ddddf...........
-            ........fdde444ef...........
-            ........fdde22ccc...........
-            .........eef22cdc...........
-            .........f4444cddc..........
-            ..........fffffcddc.........
-            ...........fff..cddc........
+            . . . . . f f f f f f . . . . . 
+            . . . f f e e e e f 2 f . . . . 
+            . . f f e e e e f 2 2 2 f . . . 
+            . . f e e e f f e e e e f . . . 
+            . . f f f f e e 2 2 2 2 e f . . 
+            . . f e 2 2 2 f f f f e 2 f . . 
+            . f f f f f f f e e e f f f . . 
+            . f f e 4 4 e b f 4 4 e e f . . 
+            . f e e 4 d 4 1 f d d e f . . . 
+            . . f e e e 4 d d d d f . . . . 
+            . . . f d d e 4 4 4 e f . . . . 
+            . . . f d d e 2 2 . . . . . . . 
+            . . . . e e f 2 2 . . . . . . . 
+            . . . . f 4 4 4 4 . . . . . . . 
+            . . . . . f f f f f . . . . . . 
+            . . . . . . f f f . . . . . . . 
             `,img`
-            ..........ffffff............
-            ........ffeeeef2f...........
-            .......ffeeeef222f..........
-            .......feeeffeeeef..........
-            .......ffffee2222ef.........
-            .......fe222ffffe2f.........
-            ......fffffffeeefff.........
-            ......ffe44ebf44eef.........
-            ......fee4d41fddeff.........
-            .......feee4ddddfddf........
-            ........ffee4eeefbbf........
-            .........f2224ddebbf........
-            .........e222eddebf.........
-            .........f444feeff..........
-            ..........ffffff............
-            ...........fff..............
+            . . . . . f f f f f f . . . . . 
+            . . . f f e e e e f 2 f . . . . 
+            . . f f e e e e f 2 2 2 f . . . 
+            . . f e e e f f e e e e f . . . 
+            . . f f f f e e 2 2 2 2 e f . . 
+            . . f e 2 2 2 f f f f e 2 f . . 
+            . f f f f f f f e e e f f f . . 
+            . f f e 4 4 e b f 4 4 e e f . . 
+            . f e e 4 d 4 1 f d d e f f . . 
+            . . f e e e 4 d d d d f d d f . 
+            . . . f f e e 4 e e e f b b f . 
+            . . . . f 2 2 2 4 d d e b b f . 
+            . . . . e 2 2 2 e d d e b f . . 
+            . . . . f 4 4 4 f e e f f . . . 
+            . . . . . f f f f f f . . . . . 
+            . . . . . . f f f . . . . . . . 
+            `],
+        50,
+        false
+        )
+        animation.runImageAnimation(
+        sword,
+        [img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . c c . . . . . 
+            . . . . . . . . c d c . . . . . 
+            . . . . . . . c d d c . . . . . 
+            . . . . . . c d d c . . . . . . 
+            . . . . . c d d c . . . . . . . 
+            . . . . . c d c . . . . . . . . 
+            . . . . . c c c . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `,img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . c c 
+            . . . . . . . . . . . . c c d c 
+            . . . . . . . . . . c c d d c c 
+            . . . . . . . . . c d d d c . . 
+            . . . . . . . . . c d c c . . . 
+            . . . . . . . . . c c c . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `,img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . c . . . . . . . . 
+            . . . . . . . c c c c c c c . . 
+            . . . . . . . c d d d d d . . . 
+            . . . . . . . c c c c c . . . . 
+            . . . . . . . c . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `,img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . c c c . . . . . . . . . . 
+            . . . c d c . . . . . . . . . . 
+            . . . c d d c . . . . . . . . . 
+            . . . . c d d c . . . . . . . . 
+            . . . . . c d d c . . . . . . . 
+            `,img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
             `],
         50,
         false
         )
     } else if (tristanDirection == 0) {
+        sword.setPosition(Tristan.x, Tristan.y + 5)
         animation.runImageAnimation(
         Tristan,
         [img`
-            ............................
-            ............................
-            ............ffff............
-            ..........fff22fff..........
-            .........fff2222fff.........
-            ........fffeeeeeefff........
-            ........ffe222222eef........
-            ........fe2ffffff2ef........
-            ........ffffeeeeffff........
-            .......ffefbf44fbfeff.......
-            .......fee41fddf14eef.......
-            ......fdfeeddddd4eff........
-            ......fbffee444edd4e........
-            ......fbf4f2222edde.........
-            ......fcf.f22cccee..........
-            .......ff.f44cdc4f..........
-            ..........fffddcff..........
-            ...........fddcff...........
-            ..........cddc..............
-            ..........cdc...............
-            ..........cc................
-            ............................
-            ............................
-            ............................
+            . . . . . . f f f f . . . . . . 
+            . . . . f f f 2 2 f f f . . . . 
+            . . . f f f 2 2 2 2 f f f . . . 
+            . . f f f e e e e e e f f f . . 
+            . . f f e 2 2 2 2 2 2 e e f . . 
+            . . f e 2 f f f f f f 2 e f . . 
+            . . f f f f e e e e f f f f . . 
+            . f f e f b f 4 4 f b f e f f . 
+            . f e e 4 1 f d d f 1 4 e e f . 
+            f d f e e d d d d d 4 e f f . . 
+            f b f f e e 4 4 4 e d d 4 e . . 
+            f b f 4 f 2 2 2 2 e d d e . . . 
+            f c f . f 2 2 . . . e e . . . . 
+            . f f . f 4 4 . . . 4 f . . . . 
+            . . . . f f f . . . f f . . . . 
+            . . . . . f . . . f f . . . . . 
             `,img`
-            ............................
-            ............................
-            .............ff.............
-            ...........ff22ff...........
-            .........fff2222fff.........
-            ........fff222222fff........
-            ........fff222222fff........
-            ........feeeeeeeeeeff.......
-            .......ffe22222222eff.......
-            .......fffffeeeefffff.......
-            ......fdfefbf44fbfeff.......
-            ......fbfe41fddf14ef........
-            ......fbffe4dddd4efe........
-            ......fcfef22222f4e.........
-            .......ff4f44554f4e.........
-            ..........ffffffdde.........
-            ...........ffffedde.........
-            ................ee..........
-            ...............ccc..........
-            ..............cc1cc.........
-            ...............c1c..........
-            ...............c1c..........
-            ...............c1c..........
-            ...............c1c..........
+            . . . . . . . f f . . . . . . . 
+            . . . . . f f 2 2 f f . . . . . 
+            . . . f f f 2 2 2 2 f f f . . . 
+            . . f f f 2 2 2 2 2 2 f f f . . 
+            . . f f f 2 2 2 2 2 2 f f f . . 
+            . . f e e e e e e e e e e f f . 
+            . f f e 2 2 2 2 2 2 2 2 e f f . 
+            . f f f f f e e e e f f f f f . 
+            f d f e f b f 4 4 f b f e f f . 
+            f b f e 4 1 f d d f 1 4 e f . . 
+            f b f f e 4 d d d d 4 e f e . . 
+            f c f e f 2 2 2 2 2 f 4 e . . . 
+            . f f 4 f 4 4 5 5 4 f 4 e . . . 
+            . . . . f f f f f f d d e . . . 
+            . . . . . f f f f e d d e . . . 
+            . . . . . . . . . . e e . . . . 
             `,img`
-            ............................
-            ............................
-            ............ffff............
-            ..........fff22fff..........
-            .........fff2222fff.........
-            ........fffeeeeeefff........
-            ........ffe222222eef........
-            ........fe2ffffff2ef........
-            ........ffffeeeeffff......cc
-            .......ffefbf44fbfeff....cdd
-            .......ffefbf44fbfeff...cddc
-            .......fee4dddddd4eef.ccddc.
-            ......fdfeeddddd4eeffecddc..
-            ......fbffee4444ee4fddccc...
-            ......fbf4f222222f1edde.....
-            ......fcf.f222222f44ee......
-            .......ff.f445544f..........
-            ..........ffffffff..........
-            ...........ff..ff...........
-            ............................
-            ............................
-            ............................
-            ............................
-            ............................
+            . . . . . . . f f . . . . . . . 
+            . . . . . f f 2 2 f f . . . . . 
+            . . . f f f 2 2 2 2 f f f . . . 
+            . . f f f 2 2 2 2 2 2 f f f . . 
+            . . f f f 2 2 2 2 2 2 f f f . . 
+            . . f e e e e e e e e e e f f . 
+            . f f e 2 2 2 2 2 2 2 2 e f f . 
+            . f f f f f e e e e f f f f f . 
+            f d f e f b f 4 4 f b f e f f . 
+            f b f e 4 1 f d d f 1 4 e f . . 
+            f b f f e 4 d d d d 4 e f e . . 
+            f c f e f 2 2 2 2 2 f 4 e . . . 
+            . f f 4 f 4 4 5 5 4 f 4 e . . . 
+            . . . . f f f f f f d d e . . . 
+            . . . . . f f f f e d d e . . . 
+            . . . . . . . . . . e e . . . . 
             `,img`
-            ............................
-            ............................
-            ............ffff............
-            ..........fff22fff..........
-            .........fff2222fff.........
-            ........fffeeeeeefff........
-            ........ffe222222eef........
-            ........fe2ffffff2ef........
-            ........ffffeeeeffff........
-            .......ffefbf44fbfeff.......
-            .......fee41fddf14eef.......
-            ........ffffdddddeef........
-            .......fddddf444eef.........
-            .......fbbbbf2222f4e........
-            .......fbbbbf2222fd4........
-            ........fccf45544f44........
-            .........ffffffff...........
-            ...........ff..ff...........
-            ............................
-            ............................
-            ............................
-            ............................
-            ............................
-            ............................
+            . . . . . . f f f f . . . . . . 
+            . . . . f f f 2 2 f f f . . . . 
+            . . . f f f 2 2 2 2 f f f . . . 
+            . . f f f e e e e e e f f f . . 
+            . . f f e 2 2 2 2 2 2 e e f . . 
+            . . f e 2 f f f f f f 2 e f . . 
+            . . f f f f e e e e f f f f . . 
+            . f f e f b f 4 4 f b f e f f . 
+            . f e e 4 1 f d d f 1 4 e e f . 
+            . . f f f f d d d d d e e f . . 
+            . f d d d d f 4 4 4 e e f . . . 
+            . f b b b b f 2 2 2 2 f 4 e . . 
+            . f b b b b f 2 2 2 2 f d 4 . . 
+            . . f c c f 4 5 5 4 4 f 4 4 . . 
+            . . . f f f f f f f f . . . . . 
+            . . . . . f f . . f f . . . . . 
+            `],
+        50,
+        false
+        )
+        animation.runImageAnimation(
+        sword,
+        [img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . c c c . . . . . . . . 
+            . . . . . c d c . . . . . . . . 
+            . . . . . d d c . . . . . . . . 
+            . . . . d d c . . . . . . . . . 
+            . . c d d c . . . . . . . . . . 
+            . . c d c . . . . . . . . . . . 
+            . . c c . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `,img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . c c c . . . . . . 
+            . . . . . . c c 1 c c . . . . . 
+            . . . . . . . c 1 c . . . . . . 
+            . . . . . . . c 1 c . . . . . . 
+            . . . . . . . c 1 c . . . . . . 
+            . . . . . . . c 1 c . . . . . . 
+            . . . . . . . . c c . . . . . . 
+            . . . . . . . . . c . . . . . . 
+            `,img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . c c c . . . . . 
+            . . . . . . . . c 1 c . . . . . 
+            . . . . . . . . c 1 1 c . . . . 
+            . . . . . . . . . c 1 1 c . . . 
+            . . . . . . . . . . c 1 c . . . 
+            . . . . . . . . . . . c c . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `,img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
             `],
         50,
         false
@@ -487,6 +758,24 @@ function setAnimation () {
                     200,
                     true
                     )
+                    sword.setImage(img`
+                        . . . . . . . . . . . . . . . . 
+                        . . . . . . . . . . . . . . . . 
+                        . . . . . . . . . . . . . . . . 
+                        . . . . . . . . . . . . . . . . 
+                        . . . . . . . . . . . . . . . . 
+                        . . . . . . . . . . . . . . . . 
+                        . . . . . . . . . . . . . . . . 
+                        . . . . . . . . . . . . . . . . 
+                        . . . . . . . . . . . . . . . . 
+                        . . . . . . . . . . . . . . . . 
+                        . . . . . . . . . . . . . . . . 
+                        . . . . . . . . . . . . . . . . 
+                        . . . . . . . . . . . . . . . . 
+                        . . . . . . . . . . . . . . . . 
+                        . . . . . . . . . . . . . . . . 
+                        . . . . . . . . . . . . . . . . 
+                        `)
                 }
             } else {
                 tristanAnimateState = -1
@@ -507,6 +796,24 @@ function setAnimation () {
                     . . f c c f 4 5 5 4 4 f 4 4 . . 
                     . . . f f f f f f f f . . . . . 
                     . . . . . f f . . f f . . . . . 
+                    `)
+                sword.setImage(img`
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
                     `)
             }
         }
@@ -588,6 +895,24 @@ function setAnimation () {
                 200,
                 true
                 )
+                sword.setImage(img`
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    `)
             }
         } else {
             tristanAnimateState = -1
@@ -608,6 +933,24 @@ function setAnimation () {
                 . . . f f e e f 4 4 4 f . . . . 
                 . . . . . f f f f f f . . . . . 
                 . . . . . . . f f f . . . . . . 
+                `)
+            sword.setImage(img`
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
                 `)
         }
     } else if (tristanDirection == 2) {
@@ -688,6 +1031,24 @@ function setAnimation () {
                 200,
                 true
                 )
+                sword.setImage(img`
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    `)
             }
         } else {
             tristanAnimateState = -1
@@ -708,6 +1069,24 @@ function setAnimation () {
                 . . 4 4 f 4 4 4 4 4 4 f 4 4 . . 
                 . . . . . f f f f f f . . . . . 
                 . . . . . f f . . f f . . . . . 
+                `)
+            sword.setImage(img`
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
                 `)
         }
     } else if (tristanDirection == 3) {
@@ -788,6 +1167,24 @@ function setAnimation () {
                 200,
                 true
                 )
+                sword.setImage(img`
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    . . . . . . . . . . . . . . . . 
+                    `)
             }
         } else {
             tristanAnimateState = -1
@@ -808,6 +1205,24 @@ function setAnimation () {
                 . . . . f 4 4 4 f e e f f . . . 
                 . . . . . f f f f f f . . . . . 
                 . . . . . . f f f . . . . . . . 
+                `)
+            sword.setImage(img`
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
+                . . . . . . . . . . . . . . . . 
                 `)
         }
     }
@@ -925,6 +1340,27 @@ controller.left.onEvent(ControllerButtonEvent.Released, function () {
         tristanDirection = 3
     }
 })
+function makeWeapon () {
+    sword = sprites.create(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, SpriteKind.Weapon)
+    sword.z = 100
+}
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     tristanDirection = 3
 })
@@ -1263,6 +1699,7 @@ function drawBridgeOpen (Open: boolean) {
         tiles.setTileAt(tiles.getTileLocation(51, 26), sprites.dungeon.buttonOrangeDepressed)
         tiles.setTileAt(tiles.getTileLocation(42, 26), sprites.dungeon.buttonTeal)
         CreateShark()
+        tiles.placeOnRandomTile(shark, sprites.builtin.brick)
     } else {
         animation.runImageAnimation(
         door,
@@ -1623,9 +2060,22 @@ function initParameters () {
     enemyBounceBack = 200
     SHARK_MAX_HP = 20
     TRISTAN_MAX_HP = 20
+    iFrameTimeDelay = 1000
 }
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     tristanDirection = 0
+})
+sprites.onOverlap(SpriteKind.Weapon, SpriteKind.Enemy, function (sprite, otherSprite) {
+    if (game.runtime() - enemyHitTime >= weaponAnimationTimeDelay) {
+        SharkHealthBar.value += 0 - 100 / SHARK_MAX_HP
+        if (SharkHealthBar.value == 0) {
+            shark.destroy(effects.disintegrate, 2000)
+            isShark = false
+            isSharkFollow = false
+        }
+        otherSprite.setVelocity(enemyBounceBack * Math.sin(Math.atan2(shark.y - Tristan.y, shark.x - Tristan.x) * 180 / 3.14), enemyBounceBack * Math.cos(Math.atan2(shark.y - Tristan.y, shark.x - Tristan.x) * 180 / 3.14))
+        enemyHitTime = game.runtime()
+    }
 })
 function createHero () {
     Tristan = sprites.create(img`
@@ -1769,38 +2219,31 @@ function CreateShark () {
     }
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
-    if (game.runtime() - 500 >= bounceBackWaitTime) {
-        if (game.runtime() - 500 < weaponAnimationTime) {
-            SharkHealthBar.value += 0 - 100 / SHARK_MAX_HP
-            if (SharkHealthBar.value == 0) {
-                shark.destroy(effects.disintegrate, 2000)
-                isShark = false
-            }
-            otherSprite.setVelocity(enemyBounceBack * Math.sin(Math.atan2(shark.y - Tristan.y, shark.x - Tristan.x) * 180 / 3.14), enemyBounceBack * Math.cos(Math.atan2(shark.y - Tristan.y, shark.x - Tristan.x) * 180 / 3.14))
-            bounceBackWaitTime = game.runtime()
-        } else {
-            tristanStatusBar.value += 0 - 100 / TRISTAN_MAX_HP
-            if (tristanStatusBar.value == 0) {
-                game.over(false, effects.smiles)
-            }
-            bounceBackWaitTime = game.runtime()
+    if (game.runtime() - iFrameTime >= iFrameTimeDelay) {
+        tristanStatusBar.value += 0 - 100 / TRISTAN_MAX_HP
+        if (tristanStatusBar.value == 0) {
+            game.over(false, effects.smiles)
         }
+        iFrameTime = game.runtime()
     }
 })
-let isSharkFollow = false
-let bounceBackWaitTime = 0
-let SharkHealthBar: StatusBarSprite = null
+let iFrameTime = 0
 let sharkStartPosition: Sprite = null
-let shark: Sprite = null
-let isShark = false
 let tristanStatusBar: StatusBarSprite = null
+let isSharkFollow = false
+let isShark = false
+let SharkHealthBar: StatusBarSprite = null
+let enemyHitTime = 0
+let iFrameTimeDelay = 0
 let TRISTAN_MAX_HP = 0
 let SHARK_MAX_HP = 0
 let enemyBounceBack = 0
+let shark: Sprite = null
 let door: Sprite = null
 let weaponAnimationTimeDelay = 0
 let weaponAnimationTime = 0
 let tristanAnimateState = 0
+let sword: Sprite = null
 let tristanDirection = 0
 let Tristan: Sprite = null
 scene.setBackgroundColor(9)
@@ -1808,15 +2251,16 @@ tiles.setTilemap(tilemap`level`)
 initParameters()
 initBackground()
 createHero()
+makeWeapon()
 tiles.placeOnTile(Tristan, tiles.getTileLocation(47, 26))
 game.onUpdate(function () {
     if (Tristan.tileKindAt(TileDirection.Center, sprites.dungeon.buttonOrange)) {
         drawBridgeOpen(true)
-        tiles.placeOnRandomTile(shark, sprites.builtin.brick)
     } else if (Tristan.tileKindAt(TileDirection.Center, sprites.dungeon.buttonTeal)) {
         drawBridgeOpen(false)
     }
     setAnimation()
+    sword.setVelocity(Tristan.vx, Tristan.vy)
 })
 game.onUpdateInterval(500, function () {
     if (isShark) {
@@ -1825,11 +2269,9 @@ game.onUpdateInterval(500, function () {
                 isSharkFollow = false
                 shark.follow(sharkStartPosition, 50)
             }
-        } else {
-            if (100 > Math.sqrt((Tristan.x - shark.x) ** 2 + (Tristan.y - shark.y) ** 2)) {
-                isSharkFollow = true
-                shark.follow(Tristan, 50)
-            }
+        } else if (100 > Math.sqrt((Tristan.x - shark.x) ** 2 + (Tristan.y - shark.y) ** 2)) {
+            isSharkFollow = true
+            shark.follow(Tristan, 50)
         }
     }
 })
